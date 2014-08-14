@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Facade;
 
 class GuardianFacade extends Facade {
 
-	protected static function getFacadeAccessor()
-	{
-		return 'guardian';
-	}
+    protected static function getFacadeAccessor()
+    {
+        return 'guardian';
+    }
 }

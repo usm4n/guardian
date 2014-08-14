@@ -2,10 +2,10 @@
 
 interface BaseValidatorInterface {
 
-	public function validate($type);
-	
-	public function setFields(array $fields);
+    public function validate($type);
+    
+    public function setFields(array $fields);
 
-	public function addRule($type, $field, $rule);
+    public function addRule($type, $field, $rule);
 
 }

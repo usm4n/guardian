@@ -4,15 +4,15 @@ use Exception;
 
 class ValidationException extends Exception {
 
-	protected $validationErrors;
+    protected $validationErrors;
 
-	public function __construct($errors)
-	{
-		$this->validationErrors = $errors;
-	}
+    public function __construct($errors)
+    {
+        $this->validationErrors = $errors;
+    }
 
-	public function getValidationErrors()
-	{
-		return $this->validationErrors;
-	}
+    public function getValidationErrors()
+    {
+        return $this->validationErrors;
+    }
 }

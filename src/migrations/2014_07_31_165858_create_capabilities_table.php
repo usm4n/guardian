@@ -5,30 +5,30 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCapabilitiesTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('capabilities', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('capability');
-			$table->string('description');
-			$table->timestamps();
-		});
-	}
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('capabilities', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('capability');
+            $table->string('description');
+            $table->timestamps();
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('capabilities');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('capabilities');
+    }
 
 }

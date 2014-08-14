@@ -3,5 +3,5 @@
 use Exception;
 
 class InvalidUserInstanceException extends Exception {
-	//
+    //
 }
