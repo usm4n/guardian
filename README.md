@@ -19,7 +19,7 @@ After adding the above lines, save the file and run:
 	
     composer update --dev
 
-After the successful completion of the composer installation process, add the following line to the `providers` array inside the `app/config/app.php' file:
+After the successful completion of the composer installation process, add the following line to the `providers` array inside the `app/config/app.php` file:
 
 	'Usman\Guardian\GuardianServiceProvider'
 
