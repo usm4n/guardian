@@ -56,11 +56,12 @@ class RepositoryTest extends GuardianTestCase {
 
     public function test_update()
     {
-        $status = $this->repo->update(1,['username'=>'usman']);
+        $status = $this->repo->update(1,['username'=>'usman','active'=>1]);
         $data = $this->repo->findById(1);
 
         $this->assertTrue($status);
         $this->assertEquals('usman',$data->username);
+        $this->assertEquals('1',$data->active);
 
     }
 

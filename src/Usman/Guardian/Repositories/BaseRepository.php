@@ -71,33 +71,6 @@ abstract class BaseRepository implements BaseRepositoryInterface {
     }
 
     /**
-     * Creates a new record in storage
-     * 
-     * @param  array  $data 
-     * @return mixed    
-     */
-    public function create(array $fields)
-    {   
-        //caching the created model
-        $this->model = $this->model->create($fields);
-        return $this->model ? $this->model->id : false;
-    }
-
-    /**
-     * Updates a record in storage
-     * 
-     * @param  int $id   
-     * @param  array  $data 
-     * @return bool       
-     */
-    public function update($id, array $fields)
-    {   
-        //caching the updated model
-        $this->model = $this->findById($id);
-        return $this->model->update($fields);
-    }
-
-    /**
      * Deletes a record from storage
      * 
      * @param  int $id 
@@ -139,7 +112,7 @@ abstract class BaseRepository implements BaseRepositoryInterface {
     {
         //checking if this id is set on a recently updated or created model.
         if($this->model->id == $id)
-        {
+        { 
             $this->model->{$method}()->withTimeStamps()->sync($ids);
         }
         else

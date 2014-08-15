@@ -2,6 +2,12 @@
 
 trait AccessControlTrait {
 
+
+    public function roles()
+    {
+        return $this->belongsToMany('Role');
+    }
+    
     public function hasRole($roleName)
     {
         foreach($this->roles as $role)

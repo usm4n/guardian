@@ -97,7 +97,7 @@ class Users extends Base {
             $this->validator->addRule('update','username','required|alpha_num|unique:users,username,'.$id);
             $this->validator->setFields(Input::all())->validate('update');
             //we will check if a password is supplied otherwise we will exclude the password field from input.
-            $this->user->update($id, Input::has('password') ? Input::all() : array_except(Input::all(),['password']));
+            $this->user->update($id, Input::all());
             $this->user->attach($id, Input::get('roles',[]),'roles');
             return Redirect::route('user.list',Input::get('ref'))->withSuccess('User Updated Successfully');
         }
