@@ -109,5 +109,31 @@ After making the requested changes you will be able to access the guardian backe
 
 ##Guardian Helpers
 
-To be updated!
+The following helper methods are available through `Guardian` Facade:
 
+- `Guardian::hasRole($roleName)` - returns true if the current user has the role otherwise false will be returned.
+- `Guardian::hasAnyRole(array $roleNames)` - returns true if user has any of the supplied roles otherwise false will be returned.
+- `Guardian::hasAllRoles(array $rolesNames)` - returns true only if user has all the supplied roles otherwise false will be returned.
+- `Guardian::hasCapability($capabilityName)` - returns true if the user has the supplied capability otherwise false will be returned.
+- `Guardian::hasAnyCapability($capabilityNames)` - returns true if the user has any of the supplied capabilities otherwise false will be returned.
+- `Guardian::hasAllCapabilities($capabilityNames)` - returns true if the user has all the supplied capabilities otherwise false will be returned.
+
+##Help Resources For Laravel
+
+- ![Laravel docs](http://laravel.com/docs)
+- ![LaraCasts](https://laracasts.com/)
+- ![Laravel forum](http://laravel.io/forum)
+- ![Laravel Reddit](http://www.reddit.com/r/laravel/)
+
+##Acknowledgements
+
+- ![Selectize.js](http://brianreavis.github.io/selectize.js/)
+- ![divshot/bootstrap-theme-white-plum](https://github.com/divshot/bootstrap-theme-white-plum)
+
+##License
+
+Guardian is a free software released under the terms of the MIT license.
+
+##To-do list
+
+- Code documentation.
