@@ -120,15 +120,15 @@ The following helper methods are available through `Guardian` Facade:
 
 ##Help Resources For Laravel
 
-- ![Laravel docs](http://laravel.com/docs)
-- ![LaraCasts](https://laracasts.com/)
-- ![Laravel forum](http://laravel.io/forum)
-- ![Laravel Reddit](http://www.reddit.com/r/laravel/)
+- [Laravel docs](http://laravel.com/docs)
+- [LaraCasts](https://laracasts.com/)
+- [Laravel forum](http://laravel.io/forum)
+- [Laravel Reddit](http://www.reddit.com/r/laravel/)
 
 ##Acknowledgements
 
-- ![Selectize.js](http://brianreavis.github.io/selectize.js/)
-- ![divshot/bootstrap-theme-white-plum](https://github.com/divshot/bootstrap-theme-white-plum)
+- [Selectize.js](http://brianreavis.github.io/selectize.js/)
+- [divshot/bootstrap-theme-white-plum](https://github.com/divshot/bootstrap-theme-white-plum)
 
 ##License
 
