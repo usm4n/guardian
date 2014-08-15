@@ -55,11 +55,7 @@ class Role extends Eloquent {
 	{
 		return $this->belongsToMany('Capability');
 	}
-
-	public function setRoleNameAttribute($value)
-	{
-		$this->attributes['role_name'] = ucfirst($value);
-	}
+	
 }
 ```
 app/models/Capability.php

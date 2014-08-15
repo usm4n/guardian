@@ -39,7 +39,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface {
      */
     private function fillRoleData(array $data)
     {
-		$this->model->role_name   = (!empty($data['role_name'])) ? $data['role_name'] : $this->model->role_name;
+		$this->model->role_name   = (!empty($data['role_name'])) ? ucfirst($data['role_name']) : $this->model->role_name;
 		$this->model->description = (!empty($data['description'])) ? $data['description'] : $this->model->description;
         
     }
