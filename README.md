@@ -12,7 +12,7 @@ Guardian also comes with plenty of Access Control helper methods that make it ea
 To install guardian, add the following lines in your `composer.json` file:
 	
 	"require-dev": {
-		"usm4n/guardian": "1.0"
+		"usm4n/guardian": "1.1"
 	}
 
 After adding the above lines, save the file and run:
