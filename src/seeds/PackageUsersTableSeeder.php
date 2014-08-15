@@ -7,22 +7,22 @@ class PackageUsersTableSeeder extends Seeder {
         $seeds = [
             [
                 'username' => 'riaz',
-                'password' => 'pass123',
+                'password' => Hash::make('pass123'),
                 'email'    => 'xyz@xyz.com'
             ],
             [
                 'username' => 'noman',
-                'password' => 'pass123',
+                'password' => Hash::make('pass123'),
                 'email'    => 'xyz@xyz.com'
             ],
             [
                 'username' => 'affan',
-                'password' => 'pass123',
+                'password' => Hash::make('pass123'),
                 'email'    => 'xyz@xyz.com'
             ],
             [
                 'username' => 'user123',
-                'password' => 'pass123',
+                'password' => Hash::make('pass123'),
                 'email'    => 'xyz@xyz.com'
             ]
         ];
