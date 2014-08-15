@@ -33,7 +33,7 @@ To setup the database for the guardian, you will need to run the following comma
 
 Run the following `artisan` command to publish the package assets in `public` directory of your Laravel installation:
 
-	artisan asset:publish 'usm4n/guardian
+	artisan asset:publish 'usm4n/guardian'
 
 ###Model Setup
 
