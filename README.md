@@ -105,7 +105,7 @@ After making the requested changes you will be able to access the guardian backe
 
 > In a development/local environment you can remove the `auth` filter from the package's `routes.php` file.
 
-![Backend Screenshot](./screenhots/backend-scr.png)
+![Backend Screenshot](./screenshots/backend-scr.png)
 
 ##Guardian Helpers
 
