@@ -97,9 +97,9 @@ return [
     'capabilityModel' => '\Capability',
 ];
 ```
-After making the requested changes you will be able to access the guardian backend at `http:/yoursite.com/guardian/backend`. The `auth` filter is applied by default. So, you will need to login first.
+After making the requested changes you will be able to access the guardian backend at `http://www.yoursite.com/guardian/backend`. The `auth` filter is applied by default. So, you will need to log in first.
 
-> In a development/local environment you can remove the `auth` filter from the package's `routes.php` file.
+> In a development/local environment you can remove the `'before'=>'auth'` key value pair from the package's `routes.php` file for a test drive.
 
 ![Backend Screenshot](./screenshots/backend-scr.png)
 
