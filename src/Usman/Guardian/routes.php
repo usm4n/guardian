@@ -2,7 +2,7 @@
 
 $namespace = 'Usman\Guardian\Controllers\\';
 
-Route::group(['prefix'=>'guardian/backend','before'=>'auth'],function() use ($namespace)
+Route::group(['prefix'=>'guardian/backend',/*'before'=>'auth'*/],function() use ($namespace)
 {
     
     Route::get('/',function()

@@ -16,7 +16,7 @@ class CreateCapabilitiesTable extends Migration {
         {
             $table->increments('id');
             $table->string('capability');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
