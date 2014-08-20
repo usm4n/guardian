@@ -47,7 +47,7 @@ Route::group(['prefix'=>'guardian/backend','before'=>'auth'],function() use ($na
         Route::get('/delete/{id}',['as'=>'capability.delete','uses'=>$namespace.'Capabilities@deleteCapability']);
 
         //post routes.
-        Route::post('/craete',['as'=>'capability.create','uses'=>$namespace.'Capabilities@createCapability']);
+        Route::post('/create',['as'=>'capability.create','uses'=>$namespace.'Capabilities@createCapability']);
         Route::post('/update/{id}',['as'=>'capability.update','uses'=>$namespace.'Capabilities@updateCapability']);
 
     });
