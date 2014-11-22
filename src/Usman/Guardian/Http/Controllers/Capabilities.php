@@ -1,4 +1,4 @@
-<?php namespace Usman\Guardian\Controllers;
+<?php namespace Usman\Guardian\Http\Controllers;
 
 use View;
 use Input;
@@ -9,28 +9,59 @@ use Usman\Guardian\Repositories\Interfaces\CapabilityRepositoryInterface;
 
 class Capabilities extends Base {
 
+    /**
+     * The repository instance
+     * 
+     * @var Usman\Guardian\Repositories\CapabilityRepository
+     */
     protected $capability;
 
+    /**
+     * The validator instance
+     * 
+     * @var Usman\Guardian\Validators\CapabilityValidator
+     */
     protected $validator;
 
+    /**
+     * Creates a new instance of Capabilities controller.
+     * 
+     * @param CapabilityRepositoryInterface $capability
+     * @param CapabilityValidator           $validator
+     */
     public function __construct(CapabilityRepositoryInterface $capability, CapabilityValidator $validator)
     {
         $this->capability = $capability;
         $this->validator = $validator;
     }
 
+    /**
+     * Shows the index of capabilities.
+     * 
+     * @return Response
+     */
     public function listCapability()
     {
         $capabilities = $this->capability->getByPageWith('roles');
-        $this->layout->main = View::make('guardian::partials.capability.list')->with('capabilities',$capabilities);
+        return View::make('guardian::partials.capability.list')->with('capabilities',$capabilities);
     }
 
+    /**
+     * Shows the new capability form.
+     *
+     * @return  Response
+     */
     public function addCapability()
     {
-        $this->layout->main = View::make('guardian::partials.capability.add');
+        return View::make('guardian::partials.capability.add');
 
     }
 
+    /**
+     * Saves the newly created capability.
+     * 
+     * @return Response
+     */
     public function createCapability()
     {   
         try
@@ -50,12 +81,24 @@ class Capabilities extends Base {
         }
     }
 
+    /**
+     * Shows the edit capability form.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function editCapability($id)
     {
         $capability = $this->capability->findByIdWith($id,'roles');
-        $this->layout->main = View::make('guardian::partials.capability.edit')->with('capability',$capability);
+        return View::make('guardian::partials.capability.edit')->with('capability',$capability);
     }
 
+    /**
+     * Updates the capability in database.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function updateCapability($id)
     {
         try
@@ -73,6 +116,12 @@ class Capabilities extends Base {
         }
     }
 
+    /**
+     * Deletes a capability from database.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function deleteCapability($id)
     {
         $this->capability->deleteWith($id,['roles']);

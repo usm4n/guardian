@@ -39,7 +39,7 @@ abstract class BaseRepository implements BaseRepositoryInterface {
      * Retrieves a single record from storage with related records
      * 
      * @param  int $id      
-     * @param  string $related 
+     * @param  string $related
      * @return Illuminate\Database\Eloquent\Model          
      */
     public function findByIdWith($id, $related)
@@ -51,7 +51,7 @@ abstract class BaseRepository implements BaseRepositoryInterface {
      * Retrieves a single page of records with related records
      * 
      * @param  string $related 
-     * @param  int $perPage 
+     * @param  int $perPage
      * @return Illuminate\Pagination\Paginator an instance of paginator.          
      */
     public function getbyPageWith($related, $perPage = self::PAGE)
@@ -62,7 +62,7 @@ abstract class BaseRepository implements BaseRepositoryInterface {
     /**
      * Retrieves all records from storage
      * 
-     * @param  array $col 
+     * @param  array $col
      * @return Illuminate\Support\Collection      
      */
     public function getAll($col = ['*'])
@@ -71,9 +71,36 @@ abstract class BaseRepository implements BaseRepositoryInterface {
     }
 
     /**
+     * Template method for creating a record in storage
+     * 
+     * @param  array  $fields
+     * @return mixed    
+     */
+    public function create(array $fields)
+    {   
+        $this->fillData($fields);
+        return $this->model->save() ? $this->model->id : false;
+    }
+
+    /**
+     * Template method for updating a record in storage
+     * 
+     * @param  int $id   
+     * @param  array  $fields
+     * @return bool       
+     */
+    public function update($id, array $fields)
+    {   
+        //caching the updated model
+        $this->model = $this->findById($id);
+        $this->fillData($fields);
+        return $this->model->save($fields);
+    }
+
+    /**
      * Deletes a record from storage
      * 
-     * @param  int $id 
+     * @param  int $id
      * @return bool     
      */
     public function delete($id)
@@ -120,5 +147,13 @@ abstract class BaseRepository implements BaseRepositoryInterface {
             $this->findById($id)->{$method}()->withTimeStamps()->sync($ids);
         }
     }
+
+    /**
+     * Fills the model attributes.
+     * 
+     * @param  array  $data
+     * @return void
+     */
+    abstract protected function fillData(array $data);
 
 }

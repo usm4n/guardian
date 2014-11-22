@@ -2,6 +2,11 @@
 
 class CapabilityValidator extends BaseValidator {
 
+	/**
+	 * Rules for capability validation.
+	 * 
+	 * @var array
+	 */
     protected $rules = [
         'create' => [
             'capability' => 'required|alpha_dash|unique:capabilities,capability',

@@ -1,6 +1,6 @@
 <?php
 
-$namespace = 'Usman\Guardian\Controllers\\';
+$namespace = 'Usman\Guardian\Http\Controllers\\';
 
 Route::group(['prefix'=>'guardian/backend','before'=>'auth'],function() use ($namespace)
 {

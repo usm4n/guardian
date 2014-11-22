@@ -2,6 +2,11 @@
 
 class RoleValidator extends BaseValidator {
 
+	/**
+	 * Rules for role validation.
+	 * 
+	 * @var array
+	 */
     protected $rules = [
         'create' => [
             'role_name'   => 'required|alpha|unique:roles,role_name',

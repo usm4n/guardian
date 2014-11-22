@@ -2,12 +2,22 @@
 
 trait AccessControlTrait {
 
-
+    /**
+     * Defines a one to many relation with the roles table
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany('Role');
     }
     
+    /**
+     * Checks for a role
+     * 
+     * @param  string  $roleName
+     * @return boolean
+     */
     public function hasRole($roleName)
     {
         foreach($this->roles as $role)
@@ -20,6 +30,12 @@ trait AccessControlTrait {
         return false;
     }
 
+    /**
+     * Checks for any role
+     * 
+     * @param  array   $roleNames
+     * @return boolean
+     */
     public function hasAnyRole(array $roleNames)
     {
         foreach($roleNames as $roleName)
@@ -29,6 +45,12 @@ trait AccessControlTrait {
         return false;
     }
 
+    /**
+     * Checks for all roles
+     * 
+     * @param  array   $roleNames
+     * @return boolean
+     */
     public function hasAllRoles(array $roleNames)
     {
         foreach($roleNames as $roleName)
@@ -38,7 +60,12 @@ trait AccessControlTrait {
         return true;
     }
 
-
+    /**
+     * Checks if a user has a capability
+     * 
+     * @param  string  $capabilityName
+     * @return boolean
+     */
     public function hasCapability($capabilityName)
     {
         foreach($this->roles as $role)
@@ -54,6 +81,12 @@ trait AccessControlTrait {
         return false;
     }
 
+    /**
+     * Checks if a user has any capability
+     * 
+     * @param  array   $capabilityNames
+     * @return boolean
+     */
     public function hasAnyCapability(array $capabilityNames)
     {
         foreach($capabilityNames as $capabilityName)
@@ -64,6 +97,12 @@ trait AccessControlTrait {
 
     }
 
+    /**
+     * Checks if a user has all the capabilities
+     * 
+     * @param  array   $capabilityNames
+     * @return boolean
+     */
     public function hasAllCapabilities(array $capabilityNames)
     {
         foreach($capabilityNames as $capabilityName)
@@ -72,6 +111,5 @@ trait AccessControlTrait {
         }
         return true;
     }
-
 
 }

@@ -1,4 +1,4 @@
-<?php namespace Usman\Guardian\Controllers;
+<?php namespace Usman\Guardian\Http\Controllers;
 
 use View;
 use Input;
@@ -9,27 +9,58 @@ use Usman\Guardian\Repositories\Interfaces\RoleRepositoryInterface;
 
 class Roles extends Base {
 
+    /**
+     * The role repository instance.
+     * 
+     * @var Usman\Guardian\Repositories\RoleRepository
+     */
     protected $role;
 
+    /**
+     * The validator instance.
+     * 
+     * @var RoleValidator
+     */
     protected $validator;
 
+    /**
+     * Creates a new instance of the Roles controller.
+     * 
+     * @param RoleRepositoryInterface $role
+     * @param RoleValidator           $validator
+     */
     public function __construct(RoleRepositoryInterface $role, RoleValidator $validator)
     {
         $this->role = $role;
         $this->validator = $validator;
     }
 
+    /**
+     * Shows an index of the roles.
+     * 
+     * @return Response
+     */
     public function listRole()
     {
         $roles = $this->role->getByPageWith('capabilities');
-        $this->layout->main = View::make('guardian::partials.role.list')->with('roles',$roles);
+        return View::make('guardian::partials.role.list')->with('roles',$roles);
     }
 
+    /**
+     * Shows the add role form.
+     *
+     * @return  Response
+     */
     public function addRole()
     {
-        $this->layout->main = View::make('guardian::partials.role.add');
+        return View::make('guardian::partials.role.add');
     }
 
+    /**
+     * Saves the new role in the database.
+     * 
+     * @return Response
+     */
     public function createRole()
     {
         try
@@ -49,12 +80,24 @@ class Roles extends Base {
         }
     }
 
+    /**
+     * Shows the edit role form.
+     * 
+     * @param int $id
+     * @return Response
+     */
     public function editRole($id)
     {
         $role = $this->role->findByIdWith($id,'capabilities');
-        $this->layout->main = View::make('guardian::partials.role.edit')->with('role',$role);
+        return View::make('guardian::partials.role.edit')->with('role',$role);
     }
 
+    /**
+     * Updates the role record in the database.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function updateRole($id)
     {
         try
@@ -72,6 +115,12 @@ class Roles extends Base {
         }
     }
 
+    /**
+     * Deletes a role from the database.
+     * 
+     * @param int $id   
+     * @return Response
+     */
     public function deleteRole($id)
     {
         $this->role->deleteWith($id,['users','capabilities']);

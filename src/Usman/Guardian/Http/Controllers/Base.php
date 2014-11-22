@@ -1,8 +1,13 @@
-<?php namespace Usman\Guardian\Controllers;
+<?php namespace Usman\Guardian\Http\Controllers;
 
 class Base extends \Controller {
 
-    protected $layout = 'guardian::layout.master';
+    /**
+     * Master layout to be used for all the views.
+     * 
+     * @var string
+     */
+    protected $layout;
 
     /**
      * Setup the layout used by the controller.

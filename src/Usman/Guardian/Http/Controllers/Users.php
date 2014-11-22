@@ -1,4 +1,4 @@
-<?php namespace Usman\Guardian\Controllers;
+<?php namespace Usman\Guardian\Http\Controllers;
 
 use View;
 use Input;
@@ -36,7 +36,11 @@ class Users extends Base {
         $this->validator = $validator;
     }
 
-    //GET /guardian/backend/user/list
+    /**
+     * Lists ths users.
+     * 
+     * @return Response
+     */
     public function listUser()
     { 
         //we will check if a form is submitted with either 
@@ -46,22 +50,30 @@ class Users extends Base {
             extract(Input::only(['role','username']));
             $users = $this->user->searchUserByRole($username,$role);
             $users->appends(compact('role','username'));
-            $this->layout->main = View::make('guardian::partials.user.list')->with('users',$users);
+            return View::make('guardian::partials.user.list')->with('users',$users);
         }//otherwise we will display the default users list
         else
         {
             $users = $this->user->getByPageWith('roles');
-            $this->layout->main = View::make('guardian::partials.user.list',compact('users'));
+            return View::make('guardian::partials.user.list',compact('users'));
         }
     }
 
-    //GET /guardian/backend/user/add
+    /**
+     * Shows the add user form
+     *
+     * @return  Response
+     */
     public function addUser()
     {   
-        $this->layout->main = View::make('guardian::partials.user.add');
+        return View::make('guardian::partials.user.add');
     }
 
-    //POST /guardian/backend/user/create
+    /**
+     * Saves the new user in the database.
+     * 
+     * @return Response
+     */
     public function createUser()
     {
         try 
@@ -82,21 +94,30 @@ class Users extends Base {
         
     }
 
-    //GET /guardian/backend/user/edit/{id}
+    /**
+     * Shows the user edit form.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function editUser($id)
     {
         $user = $this->user->findByIdWith($id,'roles');
-        $this->layout->main = View::make('guardian::partials.user.edit')->with('user',$user);
+        return View::make('guardian::partials.user.edit')->with('user',$user);
     }
     
-    //POST /guardian/backend/user/update/{id}
+    /**
+     * Updates the database record for the user.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function updateUser($id)
     {
         try
         {
             $this->validator->addRule('update','username','required|alpha_num|unique:users,username,'.$id);
             $this->validator->setFields(Input::all())->validate('update');
-            //we will check if a password is supplied otherwise we will exclude the password field from input.
             $this->user->update($id, Input::all());
             $this->user->attach($id, Input::get('roles',[]),'roles');
             return Redirect::route('user.list',Input::get('ref'))->withSuccess('User Updated Successfully');
@@ -109,7 +130,12 @@ class Users extends Base {
 
     }
 
-    //GET /guardian/backend/user/delete/{id}
+    /**
+     * Deletes a user from the database.
+     * 
+     * @param  int $id
+     * @return Response
+     */
     public function deleteUser($id)
     {
         $this->user->deleteWith($id,['roles']);

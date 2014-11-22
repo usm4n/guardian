@@ -19,24 +19,9 @@ class GuardianServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->package('usm4n/guardian');
-        
-        //composers
-        $this->app->view->composers([
-            'Usman\Guardian\Composers\RoleOptionsComposer' => [
-                'guardian::partials.user.add',
-                'guardian::partials.user.edit',
-                'guardian::partials.user.search-form',
-                'guardian::partials.capability.add',
-                'guardian::partials.capability.edit'
-            ],
-            'Usman\Guardian\Composers\CapabilityOptionsComposer' => [
-                'guardian::partials.role.add',
-                'guardian::partials.role.edit'
-            ]
-        ]);
 
         //routes
-        include __DIR__.'/routes.php';
+        include __DIR__.'/Http/routes.php';
     }
 
     /**
@@ -50,6 +35,7 @@ class GuardianServiceProvider extends ServiceProvider {
         $this->app->register('Usman\Guardian\Repositories\Providers\RoleRepositoryServiceProvider');
         $this->app->register('Usman\Guardian\Repositories\Providers\CapabilityRepositoryServiceProvider');
         $this->app->register('Usman\Guardian\AccessControl\GuardianServiceProvider');
+        $this->app->register('Usman\Guardian\Composers\ComposersServiceProvider');
     }
 
     /**

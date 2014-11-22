@@ -2,6 +2,11 @@
 
 class UserValidator extends BaseValidator {
 
+    /**
+     * Rules for user validation.
+     * 
+     * @var array
+     */
     protected $rules = [
         'create' => [
             'username' => 'required|alpha_num|unique:users,username',

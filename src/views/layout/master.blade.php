@@ -21,7 +21,7 @@
                 @include('guardian::partials.sidebar')
         </div>
         <div class="col-md-9 content">
-                {{$main}}
+                @yield('content')
         </div>
     </div>
     <div class="row">

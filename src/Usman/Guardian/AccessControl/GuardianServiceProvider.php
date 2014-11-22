@@ -24,6 +24,11 @@ class GuardianServiceProvider extends ServiceProvider {
         });*/ 
     }
 
+    /**
+     * Adds an alias for the GuardianFacade
+     * 
+     * @return void
+     */
     public function boot()
     {
         $loader = AliasLoader::getInstance();
