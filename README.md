@@ -1,8 +1,12 @@
 ##Guardian: Role Based Access Control Package For Laravel 5 and 4 With Backend Interface
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/usm4n/guardian/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/usm4n/guardian/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/usm4n/guardian/badges/build.png?b=master)](https://scrutinizer-ci.com/g/usm4n/guardian/build-status/master)
 [![Latest Stable Version](https://poser.pugx.org/usm4n/guardian/v/stable.svg)](https://packagist.org/packages/usm4n/guardian)
 [![Total Downloads](https://poser.pugx.org/usm4n/guardian/downloads.svg)](https://packagist.org/packages/usm4n/guardian)
 [![Latest Unstable Version](https://poser.pugx.org/usm4n/guardian/v/unstable.svg)](https://packagist.org/packages/usm4n/guardian) [![License](https://poser.pugx.org/usm4n/guardian/license.svg)](https://packagist.org/packages/usm4n/guardian)
+
+###For Laravel 4 please switch to the [old branch](https://github.com/usm4n/guardian/tree/old) .
 
 Guardian package for Laravel provides an easy interface to manage Role Based Access Control. Through its minimalist interface you can add users, roles and capabilities. Each user can be assigned multiple roles (many to many) and each role can be assigned multiple capabilities.
 
