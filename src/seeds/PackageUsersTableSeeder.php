@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use Illuminate\Database\Seeder;
+
 class PackageUsersTableSeeder extends Seeder {
 
     public function run()
@@ -26,9 +29,12 @@ class PackageUsersTableSeeder extends Seeder {
                 'email'    => 'xyz@xyz.com'
             ]
         ];
+
+        $user = config('guardian.userModel');
+        
         foreach ($seeds as $seed)
         {
-            User::create($seed);
+            $user::create($seed);
         }
     }
 

@@ -15,7 +15,7 @@ class RoleRepositoryServiceProvider extends ServiceProvider {
     {
         $this->app->bind('Usman\Guardian\Repositories\Interfaces\RoleRepositoryInterface',function()
         {
-            $role = \Config::get('guardian::roleModel');
+            $role = config('guardian.roleModel');
             return new RoleRepository(new $role);
         });
     }

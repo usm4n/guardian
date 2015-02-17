@@ -1,7 +1,7 @@
 {
     "name": "usm4n/guardian",
     "description": "Role Based Access Control Package For Laravel With Backend Interface",
-    "keywords": ["RBAC", "laravel Authorization","laravel AccessControl","RBAC laravel"],
+    "keywords": ["rbac", "permissions", "access control", "RBAC laravel", "roles"],
     "license" : "MIT",
     "authors": [
         {
@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.2.*"
+        "illuminate/support": "5.0.x",
+        "illuminate/html": "~5.0"
     },
     "autoload": {
         "classmap": [

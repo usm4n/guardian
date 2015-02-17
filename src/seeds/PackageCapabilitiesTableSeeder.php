@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 class PackageCapabilitiesTableSeeder extends Seeder {
 
     public function run()
@@ -22,9 +24,12 @@ class PackageCapabilitiesTableSeeder extends Seeder {
                 'description'    => 'Capability to manage all users'
             ],
         ];
+
+        $capability = config('guardian.capabilityModel');
+        
         foreach($seeds as $seed)
         {
-            Capability::create($seed);
+            $capability::create($seed);
         }
     }
 

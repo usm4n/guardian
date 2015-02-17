@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Guardian: RBAC Mangement Package For Laravel</title>
-    {{HTML::style('packages/usm4n/guardian/assets/css/bootstrap.css')}}
-    {{HTML::style('packages/usm4n/guardian/assets/css/style.css')}}
-    {{HTML::style('packages/usm4n/guardian/assets/css/selectize.bootstrap3.css')}}
+    {!!app('html')->style('packages/usm4n/guardian/assets/css/bootstrap.css')!!}
+    {!!app('html')->style('packages/usm4n/guardian/assets/css/style.css')!!}
+    {!!app('html')->style('packages/usm4n/guardian/assets/css/selectize.bootstrap3.css')!!}
 </head>
 <body>
 <div class="container">
@@ -34,10 +34,10 @@
         </div>
     </div>
 </div>
-{{ HTML::script('packages/usm4n/guardian/assets/js/jquery.js') }}
-{{ HTML::script('packages/usm4n/guardian/assets/js/selectize.min.js') }}
-{{ HTML::script('packages/usm4n/guardian/assets/js/bootstrap.min.js') }}
-{{ HTML::script('packages/usm4n/guardian/assets/js/app.js') }}
+{!! app('html')->script('packages/usm4n/guardian/assets/js/jquery.js') !!}
+{!! app('html')->script('packages/usm4n/guardian/assets/js/selectize.min.js') !!}
+{!! app('html')->script('packages/usm4n/guardian/assets/js/bootstrap.min.js') !!}
+{!! app('html')->script('packages/usm4n/guardian/assets/js/app.js') !!}
 </body>
 
 </html>

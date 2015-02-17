@@ -1,5 +1,4 @@
-
-##Guardian: Role Based Access Control Package For Laravel With Backend Interface
+##Guardian: Role Based Access Control Package For Laravel 5 and 4 With Backend Interface
 
 [![Latest Stable Version](https://poser.pugx.org/usm4n/guardian/v/stable.svg)](https://packagist.org/packages/usm4n/guardian)
 [![Total Downloads](https://poser.pugx.org/usm4n/guardian/downloads.svg)](https://packagist.org/packages/usm4n/guardian)
@@ -27,52 +26,65 @@ After the successful completion of the composer installation process, add the fo
 
 	'Usman\Guardian\GuardianServiceProvider'
 
+> If you have not already installed the `illuminate/html` package, then you will need to add the `Illuminate\Html\HtmlServiceProvider` into the `providers` array as well.
+
 ###Running Package Migrations
 
-To setup the database for the guardian, you will need to run the following command to run the package migration files:
+To setup the database for the guardian, you will need to run the following commands to run the package migration files:
+	
+	artisan vendor:publish --provider="Usman\Guardian\GuardianServiceProvider" --tag="guardian-migrations"
 
-	artisan migrate --package="usm4n/guardian"
+	artisan migrate
 
-###Publishing Assets
+The first command will copy the package migration files into your installation's `database/migrations` directory. You can make your custom changes to any table before running the second command.
 
-Run the following `artisan` command to publish the package assets in `public` directory of your Laravel installation:
+###Publishing View and Assets
 
-	artisan asset:publish 'usm4n/guardian'
+Run the following `artisan` commands to publish the package assets and views into `public` and `resources/views` directory respectively.
+
+	artisan vendor:publish --provider="Usman\Guardian\GuardianServiceProvider" --tag="guardian-assets"
+	artisan vendor:publish --provider="Usman\Guardian\GuardianServiceProvider" --tag="guardian-views"
 
 ###Model Setup
 
-Guardian requires you to have the following models inside your models directory: `User`, `Role` and `Capability`.
+Guardian requires you to have the following models inside your `app` directory: `User`, `Role` and `Capability`.
 
-app/models/Role.php
+app/Role.php
 
 ```php
-<?php
+<?php namespace App;
 
-class Role extends Eloquent {
-	
+use Illuminate\Database\Eloquent\Model;
+
+class Role extends Model {
+
 	public function users() 
-	{
-		return $this->belongsToMany('User');
-	}
+    {
+        return $this->belongsToMany('App\User');
+    }
 
-	public function capabilities()
-	{
-		return $this->belongsToMany('Capability');
-	}
-	
+    public function capabilities()
+    {
+        return $this->belongsToMany('App\Capability');
+    }
+
 }
 ```
-app/models/Capability.php
+app/Capability.php
 
 ```php
-<?php
+<?php namespace App;
 
-class Capability extends Eloquent {
+use Illuminate\Database\Eloquent\Model;
+
+class Capability extends Model {
+
 	
-	public function roles()
-	{
-		return $this->belongsToMany('Role');
-	}
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
 }
 ```
 The `User` model will require the following changes:
@@ -82,28 +94,31 @@ The `User` model will require the following changes:
 use Usman\Guardian\AccessControl\AccessControlTrait;
 use Usman\Guardian\AccessControl\AccessControlInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface, AccessControlInterface {
+class User extends Model implements AccessControlInterface, AuthenticatableContract, CanResetPasswordContract {
 
-	use UserTrait, RemindableTrait, AccessControlTrait;
-	...
-}
+	use Authenticatable, CanResetPassword, AccessControlTrait;
+
 ```
 
-> Please note that, if you want to place your model classes inside a custom `namespace`, reflect the changes in the package `config.php` file.
+Please note that, if your models are namespaced other then `App\`, you will need to reflect the changes in the package `config.php` file. You can use the following command to copy the package configuration file into your `app/config` directory:
+
+	artisan vendor:publish --provider="Usman\Guardian\GuardianServiceProvider" --tag="guardian-config"
+
+>Note: you can run the `artisan vendor:publish --provider="Usman\Guardian\GuardianServiceProvider"` command to publish all the package files at once.
 
 vendor/usm4n/guardian/src/config/config.php
 
 ```php
 <?php
 return [
-    'userModel' => '\User',
-    'roleModel' => '\Role',
-    'capabilityModel' => '\Capability',
+    'userModel' => 'App\User',
+    'roleModel' => 'App\Role',
+    'capabilityModel' => 'App\Capability',
 ];
 ```
-After making the requested changes you will be able to access the guardian backend at `http://www.yoursite.com/guardian/backend`. The `auth` filter is applied by default. So, you will need to log in first.
+After making the requested changes you will be able to access the guardian backend at `http://www.yoursite.com/guardian/backend`. The `auth` middleware is applied by default. So, you will need to log in first.
 
-> In a development/local environment you can remove the `'before'=>'auth'` key value pair from the package's `routes.php` file for a test drive.
+> In a development/local environment you can remove the `'middleware'=>'auth'` key value pair from the package's `routes.php` file for a test drive.
 
 ![Backend Screenshot](./screenshots/backend-scr.png)
 

@@ -33,8 +33,8 @@
                         Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li>{{HTML::linkRoute('capability.edit','Edit Capability',['id'=>$capability->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])}}</li>
-                        <li>{{HTML::linkRoute('capability.delete','Delete Capability',$capability->id)}}</li>
+                        <li>{!!app('html')->linkRoute('capability.edit','Edit Capability',['id'=>$capability->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])!!}</li>
+                        <li>{!!app('html')->linkRoute('capability.delete','Delete Capability',$capability->id)!!}</li>
                     </ul>
                 </div>
             </td>
@@ -43,7 +43,7 @@
         </tbody>
     </table>
     <div class="text-center">
-        {{$capabilities->links()}}
+        {{$capabilities->render()}}
     </div>
     @endif
 @stop

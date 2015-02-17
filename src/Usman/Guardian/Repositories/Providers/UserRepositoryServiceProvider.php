@@ -15,7 +15,7 @@ class UserRepositoryServiceProvider extends ServiceProvider {
     {
         $this->app->bind('Usman\Guardian\Repositories\Interfaces\UserRepositoryInterface',function()
         {
-            $user = \Config::get('guardian::userModel');
+            $user = config('guardian.userModel');
             return new UserRepository(new $user);
         });
 

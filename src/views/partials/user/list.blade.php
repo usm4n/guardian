@@ -36,8 +36,8 @@
                                 Action <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li>{{HTML::linkRoute('user.edit','Edit User',['id'=>$user->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])}}</li>
-                                <li>{{HTML::linkRoute('user.delete','Delete User',$user->id)}}</li>
+                                <li>{!!app('html')->linkRoute('user.edit','Edit User',['id'=>$user->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])!!}</li>
+                                <li>{!!app('html')->linkRoute('user.delete','Delete User',$user->id)!!}</li>
                             </ul>
                         </div>
                     </td>
@@ -46,7 +46,7 @@
         </tbody>
     </table>
     <div class="text-center">
-        {{$users->links()}}
+        {!!$users->render()!!}
     </div>
     @endif
 @stop

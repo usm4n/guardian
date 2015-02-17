@@ -9,7 +9,7 @@ trait AccessControlTrait {
      */
     public function roles()
     {
-        return $this->belongsToMany('Role');
+        return $this->belongsToMany(config('guardian.roleModel'));
     }
     
     /**

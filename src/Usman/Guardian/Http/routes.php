@@ -1,55 +1,57 @@
 <?php
 
-$namespace = 'Usman\Guardian\Http\Controllers\\';
-
-Route::group(['prefix'=>'guardian/backend','before'=>'auth'],function() use ($namespace)
-{
-    
-    Route::get('/',function()
-    {   
-        return \Redirect::to('guardian/backend/user/list');
-    });
-    
-    Route::group(['prefix'=>'user'],function() use ($namespace) {
+Route::group([
+    'prefix'=>'guardian/backend',
+    'namespace'=>'Usman\Guardian\Http\Controllers',
+    //'middleware' => 'auth'
+    ], 
+    function()
+    {    
+        Route::get('/',function()
+        {   
+            return \Redirect::to('guardian/backend/user/list');
+        });
         
-        //get user routes.
-        Route::get('/list',['as'=>'user.list','uses'=>$namespace.'Users@listUser']);
-        Route::get('/add',['as'=>'user.add','uses'=>$namespace.'Users@addUser']);
-        Route::get('/edit/{id}',['as'=>'user.edit','uses'=>$namespace.'Users@editUser']);
-        Route::get('/delete/{id}',['as'=>'user.delete','uses'=>$namespace.'Users@deleteUser']);
-       
-        //post user routes
-        Route::post('/create',['as'=>'user.create','uses'=>$namespace.'Users@createUser']);
-        Route::post('/update/{id}',['as'=>'user.update','uses'=>$namespace.'Users@updateUser']);
+        Route::group(['prefix'=>'user'],function()
+        {
+            //get user routes.
+            Route::get('/list',['as'=>'user.list','uses'=>'Users@listUser']);
+            Route::get('/add',['as'=>'user.add','uses'=>'Users@addUser']);
+            Route::get('/edit/{id}',['as'=>'user.edit','uses'=>'Users@editUser']);
+            Route::get('/delete/{id}',['as'=>'user.delete','uses'=>'Users@deleteUser']);
+           
+            //post user routes
+            Route::post('/create',['as'=>'user.create','uses'=>'Users@createUser']);
+            Route::post('/update/{id}',['as'=>'user.update','uses'=>'Users@updateUser']);
 
-    });
+        });
 
-    Route::group(['prefix'=>'role'],function() use ($namespace) {
-        
-        //get role routes.
-        Route::get('/list',['as'=>'role.list','uses'=>$namespace.'Roles@listRole']);
-        Route::get('/add',['as'=>'role.add','uses'=>$namespace.'Roles@addRole']);
-        Route::get('/edit/{id}',['as'=>'role.edit','uses'=>$namespace.'Roles@editRole']);
-        Route::get('/delete/{id}',['as'=>'role.delete','uses'=>$namespace.'Roles@deleteRole']);
+        Route::group(['prefix'=>'role'],function()
+        {
+            //get role routes.
+            Route::get('/list',['as'=>'role.list','uses'=>'Roles@listRole']);
+            Route::get('/add',['as'=>'role.add','uses'=>'Roles@addRole']);
+            Route::get('/edit/{id}',['as'=>'role.edit','uses'=>'Roles@editRole']);
+            Route::get('/delete/{id}',['as'=>'role.delete','uses'=>'Roles@deleteRole']);
 
-        //post role routes.
-        Route::post('/create',['as'=>'role.create','uses'=>$namespace.'Roles@createRole']);
-        Route::post('/update/{id}',['as'=>'role.update','uses'=>$namespace.'Roles@updateRole']);
+            //post role routes.
+            Route::post('/create',['as'=>'role.create','uses'=>'Roles@createRole']);
+            Route::post('/update/{id}',['as'=>'role.update','uses'=>'Roles@updateRole']);
 
-    });
+        });
 
-    Route::group(['prefix'=>'capability'],function() use ($namespace) {
-        
-        //get capability routes.
-        Route::get('/list',['as'=>'capability.list','uses'=>$namespace.'Capabilities@listCapability']);
-        Route::get('/add',['as'=>'capability.add','uses'=>$namespace.'Capabilities@addCapability']);
-        Route::get('/edit/{id}',['as'=>'capability.edit','uses'=>$namespace.'Capabilities@editCapability']);
-        Route::get('/delete/{id}',['as'=>'capability.delete','uses'=>$namespace.'Capabilities@deleteCapability']);
+        Route::group(['prefix'=>'capability'],function() 
+        {   
+            //get capability routes.
+            Route::get('/list',['as'=>'capability.list','uses'=>'Capabilities@listCapability']);
+            Route::get('/add',['as'=>'capability.add','uses'=>'Capabilities@addCapability']);
+            Route::get('/edit/{id}',['as'=>'capability.edit','uses'=>'Capabilities@editCapability']);
+            Route::get('/delete/{id}',['as'=>'capability.delete','uses'=>'Capabilities@deleteCapability']);
 
-        //post routes.
-        Route::post('/create',['as'=>'capability.create','uses'=>$namespace.'Capabilities@createCapability']);
-        Route::post('/update/{id}',['as'=>'capability.update','uses'=>$namespace.'Capabilities@updateCapability']);
+            //post routes.
+            Route::post('/create',['as'=>'capability.create','uses'=>'Capabilities@createCapability']);
+            Route::post('/update/{id}',['as'=>'capability.update','uses'=>'Capabilities@updateCapability']);
 
-    });
-
+        });
 });
+

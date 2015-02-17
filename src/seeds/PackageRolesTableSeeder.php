@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 class PackageRolesTableSeeder extends Seeder {
 
     public function run()
@@ -23,9 +25,12 @@ class PackageRolesTableSeeder extends Seeder {
                 'description'  => 'News Subscriber',
             ]
         ];
+
+        $role = config('guardian.roleModel');
+
         foreach($seeds as $seed)
         {
-            Role::create($seed);
+            $role::create($seed);
         }
     }
 

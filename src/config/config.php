@@ -1,6 +1,6 @@
 <?php
 return [
-    'userModel' => '\User',
-    'roleModel' => '\Role',
-    'capabilityModel' => '\Capability',
+    'userModel' => 'App\User',
+    'roleModel' => 'App\Role',
+    'capabilityModel' => 'App\Capability',
 ];

@@ -33,8 +33,8 @@
                         Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li>{{HTML::linkRoute('role.edit','Edit Role',['id'=>$role->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])}}</li>
-                        <li>{{HTML::linkRoute('role.delete','Delete Role',$role->id)}}</li>
+                        <li>{!!app('html')->linkRoute('role.edit','Edit Role',['id'=>$role->id,'ref'=>http_build_query(Request::query()) ? : 'page=1'])!!}</li>
+                        <li>{!!app('html')->linkRoute('role.delete','Delete Role',$role->id)!!}</li>
                     </ul>
                 </div>
             </td>
@@ -43,7 +43,7 @@
         </tbody>
     </table>
     <div class="text-center">
-        {{$roles->links()}}
+        {!!$roles->render()!!}
     </div>
     @endif
 @stop

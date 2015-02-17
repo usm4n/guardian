@@ -14,7 +14,7 @@ class CapabilityRepositoryServiceProvider extends ServiceProvider {
     {
         $this->app->bind('Usman\Guardian\Repositories\Interfaces\CapabilityRepositoryInterface',function()
         {
-            $capability = \Config::get('guardian::capabilityModel');
+            $capability = config('guardian.capabilityModel');
             return new CapabilityRepository(new $capability);
         });
     }
