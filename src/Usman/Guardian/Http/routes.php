@@ -3,7 +3,7 @@
 Route::group([
     'prefix'=>'guardian/backend',
     'namespace'=>'Usman\Guardian\Http\Controllers',
-    //'middleware' => 'auth'
+    'middleware' => 'auth'
     ], 
     function()
     {    
